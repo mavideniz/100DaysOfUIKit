@@ -20,6 +20,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareTapped))
         button1.layer.borderWidth = 1
         button2.layer.borderWidth = 2
         button3.layer.borderWidth = 3
@@ -72,6 +73,11 @@ class ViewController: UIViewController {
             chekQuestion(title: title)
         }
         
+    }
+    @objc func shareTapped() {
+        let vc = UIActivityViewController(activityItems: ["Hey! My score is \(score). Do you want try?"], applicationActivities: [])
+        vc.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
+        present(vc, animated: true)
     }
     
 
